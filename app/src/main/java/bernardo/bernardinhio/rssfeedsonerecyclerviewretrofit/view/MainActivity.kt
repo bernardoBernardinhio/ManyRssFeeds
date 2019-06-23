@@ -10,7 +10,7 @@ import android.support.v7.widget.Toolbar
 import android.widget.Toast
 import bernardo.bernardinhio.retrofit2rssconverterfactory.service.RetrofitInstance
 import bernardo.bernardinhio.rssfeedsonerecyclerviewretrofit.R
-import bernardo.bernardinhio.rssfeedsonerecyclerviewretrofit.`data-navigation`.NavigationDataProvider
+import bernardo.bernardinhio.rssfeedsonerecyclerviewretrofit.dataprovider.NavigationDataProvider
 import bernardo.bernardinhio.rssfeedsonerecyclerviewretrofit.model.RecyclerViewContentItemModel
 import me.toptas.rssconverter.RssFeed
 import me.toptas.rssconverter.RssItem
@@ -19,35 +19,46 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-//
 
 class MainActivity : AppCompatActivity() {
 
     private var drawerLayout: DrawerLayout? = null
+    private lateinit var toolbar : Toolbar
+    private lateinit var drawerToggle : ActionBarDrawerToggle
+
     private var recyclerViewNavigation: RecyclerView? = null
     private var adapterRecyclerViewNavigation: AdapterRecyclerViewNavigation? = null
     private val arrayListNavigation = NavigationDataProvider.Companion.cloneDataProvider()
-    private lateinit var toolbar : Toolbar
-    private lateinit var drawerToggle : ActionBarDrawerToggle
+
+    private var recyclerViewRssContent: RecyclerView? = null
+    private var adapterRecyclerViewRssContent: AdapterRecyclerViewRssContent? = null
+    private lateinit var arrayListRssContent : ArrayList<RecyclerViewContentItemModel>
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        initializeLayoutComponents()
+
+        setDrawerLayoutComponents()
+
+        setupNavigationRecyclerView()
+
+    }
+
+
+
+
+
+    private fun initializeLayoutComponents() {
         toolbar = findViewById<Toolbar>(R.id.toolbar)
-        setSupportActionBar(toolbar)
         drawerLayout = findViewById<DrawerLayout>(R.id.drawerLayout)
         recyclerViewNavigation = findViewById<RecyclerView>(R.id.navigation_recyclerview)
+    }
 
-
-        val layoutManager = LinearLayoutManager(this)
-        recyclerViewNavigation!!.setLayoutManager(layoutManager)
-
-        adapterRecyclerViewNavigation =
-            AdapterRecyclerViewNavigation(arrayListNavigation)
-        recyclerViewNavigation!!.adapter = adapterRecyclerViewNavigation
-        adapterRecyclerViewNavigation?.notifyDataSetChanged()
-
+    private fun setDrawerLayoutComponents() {
+        setSupportActionBar(toolbar)
 
         drawerToggle = ActionBarDrawerToggle(
             this,
@@ -60,50 +71,20 @@ class MainActivity : AppCompatActivity() {
         drawerLayout!!.addDrawerListener(drawerToggle)
 
         drawerToggle.syncState()
+    }
+
+    private fun setupNavigationRecyclerView() {
+        val layoutManager = LinearLayoutManager(this)
+        recyclerViewNavigation!!.setLayoutManager(layoutManager)
+
+        adapterRecyclerViewNavigation =
+            AdapterRecyclerViewNavigation(arrayListNavigation)
+        recyclerViewNavigation!!.adapter = adapterRecyclerViewNavigation
+        adapterRecyclerViewNavigation?.notifyDataSetChanged()
 
 
     }
 
 
 
-    fun getDataFromRssResponse(baseUrl : String, endPoint : String) : ArrayList<RecyclerViewContentItemModel>{
-
-        var arrayListContentRecyclerView : ArrayList<RecyclerViewContentItemModel> = ArrayList<RecyclerViewContentItemModel>()
-
-        // ex   https://www.cinemablend.com/rss/topic/reviews/movies
-        val call : Call<RssFeed> = RetrofitInstance.setupRetrofitCall(
-            "https://www.cinemablend.com/",
-            "topic/reviews/movies"
-        )
-
-
-        call.enqueue(object : Callback<RssFeed> {
-            override fun onResponse(call: Call<RssFeed>, response: Response<RssFeed>) {
-
-                val listItems : List<RssItem>? = response.body()?.items
-
-                Toast.makeText(this@MainActivity, "Success", Toast.LENGTH_SHORT).show()
-
-                listItems?.let {
-                    for (item in listItems){
-
-                        arrayListContentRecyclerView.add(RecyclerViewContentItemModel(
-                            description = item.description,
-                            image = item.image,
-                            link = item.link,
-                            publishDate = item.publishDate,
-                            title = item.title
-                        ))
-                    }
-                }
-
-            }
-
-            override fun onFailure(call: Call<RssFeed>, t: Throwable) {
-                Toast.makeText(this@MainActivity, "API call failed!", Toast.LENGTH_SHORT).show()
-            }
-        })
-
-        return arrayListContentRecyclerView
-    }
 }

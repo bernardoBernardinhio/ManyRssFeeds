@@ -1,9 +1,9 @@
-package bernardo.bernardinhio.rssfeedsonerecyclerviewretrofit.`data-navigation`
+package bernardo.bernardinhio.rssfeedsonerecyclerviewretrofit.dataprovider
 
 import bernardo.bernardinhio.rssfeedsonerecyclerviewretrofit.model.RecyclerViewNavigationModel
 import java.util.ArrayList
 
-
+// no logic but fixed names of rss providers
 class NavigationDataProvider{
     companion object {
         fun getArrayListNavigationItems() : ArrayList<RecyclerViewNavigationModel>{
