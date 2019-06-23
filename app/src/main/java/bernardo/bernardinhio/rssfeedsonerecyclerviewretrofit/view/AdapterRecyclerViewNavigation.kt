@@ -1,4 +1,4 @@
-package bernardo.bernardinhio.rssfeedsonerecyclerviewretrofit
+package bernardo.bernardinhio.rssfeedsonerecyclerviewretrofit.view
 
 import android.support.v7.widget.RecyclerView
 import android.util.Log
@@ -7,13 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import bernardo.bernardinhio.rssfeedsonerecyclerviewretrofit.model.NavigationModel
+import bernardo.bernardinhio.rssfeedsonerecyclerviewretrofit.R
+import bernardo.bernardinhio.rssfeedsonerecyclerviewretrofit.model.RecyclerViewNavigationModel
 import java.lang.Exception
 
 import java.util.*
 
 
-class AdapterRecyclerViewNavigation internal constructor(private val arrayListProducts: ArrayList<NavigationModel>) : RecyclerView.Adapter<AdapterRecyclerViewNavigation.ViewHolderRV>() {
+class AdapterRecyclerViewNavigation internal constructor(private val arrayListProducts: ArrayList<RecyclerViewNavigationModel>) : RecyclerView.Adapter<AdapterRecyclerViewNavigation.ViewHolderRV>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderRV {
 

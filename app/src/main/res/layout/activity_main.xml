@@ -6,7 +6,7 @@
         android:id="@+id/drawerLayout"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        tools:context=".MainActivity">
+        tools:context=".view.MainActivity">
 
     <!-- page content // the first child of the DrawerLayout -->
     <android.support.constraint.ConstraintLayout
