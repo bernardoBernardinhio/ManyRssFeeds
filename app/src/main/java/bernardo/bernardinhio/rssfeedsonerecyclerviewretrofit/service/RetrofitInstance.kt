@@ -1,4 +1,4 @@
-package bernardo.bernardinhio.retrofit2rssconverterfactory.service
+package bernardo.bernardinhio.rssfeedsonerecyclerviewretrofit.service
 
 import me.toptas.rssconverter.RssConverterFactory
 import me.toptas.rssconverter.RssFeed
@@ -10,18 +10,15 @@ object RetrofitInstance {
     // singleton
     private var retrofitInstance: Retrofit? = null
 
-    // the baseUrl SHOULD always end with /
-    private val BASE_URL = "https://www.cinemablend.com/"
-
-    fun setupRetrofitCall(baseUrl : String, endPoint : String) : Call<RssFeed> {
+    fun setupRetrofitCall(feedsBaseUrl : String, feedsUrlEndPoint : String) : Call<RssFeed> {
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://www.cinemablend.com/")
+            .baseUrl(feedsBaseUrl)
             .addConverterFactory(RssConverterFactory.create())
             .build()
 
         val service = retrofit.create(RssService::class.java)
 
-        return service.getRss("rss/topic/reviews/movies")
+        return service.getRss(feedsUrlEndPoint)
     }
 }

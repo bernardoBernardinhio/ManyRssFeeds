@@ -1,4 +1,4 @@
-package bernardo.bernardinhio.retrofit2rssconverterfactory.service
+package bernardo.bernardinhio.rssfeedsonerecyclerviewretrofit.service
 
 import me.toptas.rssconverter.RssFeed
 import retrofit2.Call

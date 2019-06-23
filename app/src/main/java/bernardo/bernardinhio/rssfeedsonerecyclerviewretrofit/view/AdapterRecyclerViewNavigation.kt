@@ -14,7 +14,7 @@ import java.lang.Exception
 import java.util.*
 
 
-class AdapterRecyclerViewNavigation internal constructor(private val arrayListProducts: ArrayList<RecyclerViewNavigationModel>) : RecyclerView.Adapter<AdapterRecyclerViewNavigation.ViewHolderRV>() {
+class AdapterRecyclerViewNavigation internal constructor(private val arrayListNavigation: ArrayList<RecyclerViewNavigationModel>) : RecyclerView.Adapter<AdapterRecyclerViewNavigation.ViewHolderRV>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderRV {
 
@@ -25,32 +25,32 @@ class AdapterRecyclerViewNavigation internal constructor(private val arrayListPr
 
     override fun onBindViewHolder(holder: ViewHolderRV, position: Int) {
 
-        val (imageName, title, subtitle, rating) = arrayListProducts[position]
+        val (imageName, title, subtitle, rating) = arrayListNavigation[position]
 
 
         // set image resource
-        val context = holder.ivProductImage.context
+        val context = holder.ivNavigationImage.context
         val id = context.resources.getIdentifier(imageName, "drawable", context.packageName)
         try {
-            holder.ivProductImage.setImageResource(id)
+            holder.ivNavigationImage.setImageResource(id)
         }catch (e : Exception){
-            Log.d("Bernard", e.message)
+            Log.d("ImageException", e.message)
         }
 
         // set other views values
-        holder.tvProductTitle.text = title
-        holder.tvProductLocation.text = "In $subtitle"
-        holder.tvProductPrice.text = "$rating€"
+        holder.tvNavigationTitle.text = title
+        holder.tvNavigationLocation.text = "In $subtitle"
+        holder.tvNavigationPrice.text = "$rating€"
     }
 
     override fun getItemCount(): Int {
-        return arrayListProducts.size
+        return arrayListNavigation.size
     }
 
     inner class ViewHolderRV(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val ivProductImage: ImageView = itemView.findViewById<ImageView>(R.id.iv_fragment_image)
-        val tvProductTitle: TextView = itemView.findViewById<TextView>(R.id.tv_fragment_title)
-        val tvProductLocation: TextView = itemView.findViewById<TextView>(R.id.tv_fragment_subtitle)
-        val tvProductPrice: TextView = itemView.findViewById<TextView>(R.id.tv_fragment_right_hint)
+        val ivNavigationImage: ImageView = itemView.findViewById<ImageView>(R.id.iv_fragment_navigation_image)
+        val tvNavigationTitle: TextView = itemView.findViewById<TextView>(R.id.tv_fragment_navigation_title)
+        val tvNavigationLocation: TextView = itemView.findViewById<TextView>(R.id.tv_fragment_navigation_subtitle)
+        val tvNavigationPrice: TextView = itemView.findViewById<TextView>(R.id.tv_fragment_right_navigation_hint)
     }
 }

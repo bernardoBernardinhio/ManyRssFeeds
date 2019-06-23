@@ -9,20 +9,51 @@ class NavigationDataProvider{
         fun getArrayListNavigationItems() : ArrayList<RecyclerViewNavigationModel>{
             val arrayListRecyclerViewNavigationItems : ArrayList<RecyclerViewNavigationModel> = ArrayList<RecyclerViewNavigationModel>()
 
+            // https://www.cinemablend.com/rss/topic/reviews/movies
             arrayListRecyclerViewNavigationItems.add(
                 RecyclerViewNavigationModel(
-                    "image1",
-                    "Daily Mail",
-                    "Latest stories",
-                    "5.00"
+                    "cinema",
+                    "Cinema",
+                    "reviews/movies",
+                    "5.00",
+                    "https://www.cinemablend.com/",
+                    "rss/topic/reviews/movies"
                 )
             )
+
+            // https://www.kfz-betrieb.vogel.de/rss/themechannel5452.xml
             arrayListRecyclerViewNavigationItems.add(
                 RecyclerViewNavigationModel(
-                    "image2",
-                    "BBC Sports",
-                    "World edition",
-                    "1.07"
+                    "cars",
+                    "Car News",
+                    "Commercial and sport",
+                    "4.5",
+                    "https://www.kfz-betrieb.vogel.de/",
+                    "rss/themechannel5452.xml"
+                )
+            )
+
+            // https://www.kfz-betrieb.vogel.de/rss/themechannel5447.xml
+            arrayListRecyclerViewNavigationItems.add(
+                RecyclerViewNavigationModel(
+                    "safety",
+                    "Best practices",
+                    "Laws insight",
+                    "3.7",
+                    "https://www.kfz-betrieb.vogel.de/",
+                    "rss/themechannel5447.xml"
+                )
+            )
+
+            // http://rss.sueddeutsche.de/rss/Topthemen
+            arrayListRecyclerViewNavigationItems.add(
+                RecyclerViewNavigationModel(
+                    "students",
+                    "Students matters",
+                    "studies finance",
+                    "5.0",
+                    "http://rss.sueddeutsche.de/",
+                    "rss/Topthemen"
                 )
             )
 
