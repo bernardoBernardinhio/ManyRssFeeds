@@ -7,9 +7,6 @@ import retrofit2.Retrofit
 
 object RetrofitInstance {
 
-    // singleton
-    private var retrofitInstance: Retrofit? = null
-
     fun setupRetrofitCall(feedsBaseUrl : String, feedsUrlEndPoint : String) : Call<RssFeed> {
 
         val retrofit = Retrofit.Builder()

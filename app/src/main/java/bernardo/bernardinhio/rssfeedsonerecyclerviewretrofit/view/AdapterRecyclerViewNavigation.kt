@@ -39,8 +39,8 @@ class AdapterRecyclerViewNavigation internal constructor(private val arrayListNa
 
         // set other views values
         holder.tvNavigationTitle.text = title
-        holder.tvNavigationLocation.text = "In $subtitle"
-        holder.tvNavigationPrice.text = "$rating€"
+        holder.tvNavigationLocation.text = subtitle
+        holder.tvNavigationPrice.text = rating
     }
 
     override fun getItemCount(): Int {

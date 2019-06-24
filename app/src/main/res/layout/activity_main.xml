@@ -23,15 +23,29 @@
                 android:id="@+id/header_page"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Content RecyclerView"
                 android:gravity="center_horizontal"
-                android:textSize="20sp"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:background="#E0E0E0"
                 app:layout_constraintTop_toBottomOf="@id/toolbar"/>
         <android.support.v7.widget.RecyclerView
                 android:id="@+id/page_recyclerview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="#E0E0E0"
                 app:layout_constraintTop_toBottomOf="@id/header_page"/>
+        <ProgressBar
+                android:id="@+id/progress_bar_loading_feeds"
+                style="@android:style/Widget.ProgressBar.Large"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:progress="25"
+                android:layout_marginTop="20sp"
+                android:visibility="gone"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"/>
     </android.support.constraint.ConstraintLayout>
 
     <!-- The Navigation // the SECOND child of the DrawerLayout -->
